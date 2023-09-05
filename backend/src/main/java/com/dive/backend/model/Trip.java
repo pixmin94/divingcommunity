@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Trip {
-    private String id;
+    private String tripId;
     private String title;
     private String location;
-    private Date start;
-    private Date end;
+    private Date startDate;
+    private Date endDate;
 }
