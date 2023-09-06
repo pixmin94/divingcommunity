@@ -1,0 +1,26 @@
+<h1>Create Trip</h1>
+
+<form [formGroup]="form" (submit)="submitTrip()">
+  <table>
+    <tr>
+      <td>Title: </td>
+      <td><input type="text" formControlName="title"></td>
+    </tr>
+    <tr>
+      <td>Location: </td>
+      <td><input type="text" formControlName="location"></td>
+    </tr>
+    <tr>
+      <td>Start Date: </td>
+      <td><input type="date" formControlName="startDate"></td>
+    </tr>
+    <tr>
+      <td>End Date: </td>
+      <td><input type="date" formControlName="endDate"></td>
+    </tr>
+    <tr>
+      <!-- <td></td> -->
+      <td><button type="submit" [disabled]="form.invalid">Create Trip</button></td>
+    </tr>
+  </table>
+</form>
