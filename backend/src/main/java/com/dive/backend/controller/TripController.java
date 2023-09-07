@@ -1,10 +1,13 @@
 package com.dive.backend.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +30,15 @@ public class TripController {
         Trip t = Utils.toTripObject(trip);
         System.out.println("Trip object: " + t);
         int res = service.createTrip(t);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(res);
+    }
+
+    @GetMapping(path ="/gettrips")
+    private ResponseEntity<List<Trip>> getAllTrips() {
+        List<Trip> res = service.getAllTrips();
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)

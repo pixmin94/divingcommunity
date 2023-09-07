@@ -10,6 +10,7 @@ import { Trip } from '../model/models';
 })
 export class CreateTripComponent implements OnInit{
   form!: FormGroup
+  tripID!: number
 
   constructor(private fb: FormBuilder,
       private service: DivingService) { }
@@ -20,8 +21,10 @@ export class CreateTripComponent implements OnInit{
 
   submitTrip() {
     const trip: Trip = this.form.value
-    console.log(trip)
+    // console.log(trip)
     this.service.createTrip(trip)
+      .then(result => alert("Trip ID created: "+result))
+      .catch(error => alert("Error: "+error))
   }
 
   createForm() {

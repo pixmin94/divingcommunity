@@ -1,7 +1,7 @@
 import { Trip } from './../model/models';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class DivingService {
@@ -10,6 +10,10 @@ export class DivingService {
   createTrip(trip: Trip): Promise<any> {
     return firstValueFrom(
       this.http.post<Trip>('/api/createtrip', trip)
-    ).then(result => console.log(result))
+    )//.then(result => console.log(result))
+  }
+
+  getTrips(): Observable<Trip[]> {
+    return this.http.get<any>('/api/gettrips')
   }
 }

@@ -1,6 +1,7 @@
 package com.dive.backend.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -14,6 +15,7 @@ import static com.dive.backend.repository.Queries.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 public class TripRepository {
@@ -39,5 +41,9 @@ public class TripRepository {
 
         Integer createdTripId = keyholder.getKey().intValue();
         return createdTripId;
+    }
+
+    public List<Trip> getTrips() {
+        return jdbcTemplate.query(SQL_GET_ALL_TRIPS, new BeanPropertyRowMapper<>(Trip.class));
     }
 }
