@@ -8,6 +8,7 @@ import jakarta.json.JsonReader;
 import java.io.StringReader;
 import java.sql.Date;
 
+import com.dive.backend.model.Account;
 import com.dive.backend.model.Trip;
 
 public class Utils {
@@ -24,6 +25,18 @@ public class Utils {
         t.setStartDate(Date.valueOf(o.getString("startDate")));
         t.setEndDate(Date.valueOf(o.getString("endDate")));
         return t;
+    }
+
+    public static Account toAccountObject(String account) {
+        JsonObject o = toJSON(account);
+        Account a = new Account();
+        // username, full_name, email, nationality, image
+        a.setUsername(o.getString("username"));
+        a.setFullName(o.getString("full_name"));
+        a.setEmail(o.getString("email"));
+        a.setNationality(o.getString("nationality"));
+        a.setImage(o.getString("image"));
+        return a;
     }
 
     // public static Trip toTripObject(Document doc){
