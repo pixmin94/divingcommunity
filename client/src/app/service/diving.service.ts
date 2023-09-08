@@ -1,4 +1,4 @@
-import { Trip } from './../model/models';
+import { Account, Trip } from './../model/models';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, firstValueFrom } from 'rxjs';
@@ -15,5 +15,11 @@ export class DivingService {
 
   getTrips(): Observable<Trip[]> {
     return this.http.get<any>('/api/gettrips')
+  }
+
+  createAccount(account: Account): Promise<any> {
+    return firstValueFrom(
+      this.http.post<Account>('/api/createaccount', account)
+    )
   }
 }

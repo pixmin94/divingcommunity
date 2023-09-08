@@ -1,0 +1,26 @@
+<h1>Create Account</h1>
+
+<form [formGroup]="form" (submit)="submitAccount()">
+  <table>
+    <tr>
+      <td>Username: </td>
+      <td><input type="text" formControlName="username"></td>
+    </tr>
+    <tr>
+      <td>Full Name: </td>
+      <td><input type="text" formControlName="fullName"></td>
+    </tr>
+    <tr>
+      <td>Email: </td>
+      <td><input type="email" formControlName="email"></td>
+    </tr>
+    <tr>
+      <td>Nationality: </td>
+      <td><input type="text" formControlName="nationality"></td>
+    </tr>
+    <tr>
+      <!-- <td></td> -->
+      <td><button type="submit" [disabled]="form.invalid">Register</button></td>
+    </tr>
+  </table>
+</form>
