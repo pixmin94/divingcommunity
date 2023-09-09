@@ -1,7 +1,7 @@
-import { DivingService } from './../service/diving.service';
+import { DivingService } from '../../service/diving.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Trip } from '../model/models';
+import { Trip } from '../../model/models';
 
 @Component({
   selector: 'app-create-trip',

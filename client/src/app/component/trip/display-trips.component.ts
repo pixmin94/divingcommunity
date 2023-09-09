@@ -1,6 +1,6 @@
-import { DivingService } from './../service/diving.service';
+import { DivingService } from '../../service/diving.service';
 import { Component, OnInit } from '@angular/core';
-import { Trip } from '../model/models';
+import { Trip } from '../../model/models';
 import { Subscription } from 'rxjs';
 
 @Component({
