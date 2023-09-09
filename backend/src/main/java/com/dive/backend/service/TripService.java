@@ -20,4 +20,13 @@ public class TripService {
     public List<Trip> getAllTrips() {
         return repo.getTrips();
     }
+
+    public Integer updateTrip(Trip trip) {
+        try {
+            repo.updateTrip(trip);
+            return Integer.valueOf(trip.getTripId());
+        } catch (Exception e){
+            return 0;
+        }
+    }
 }

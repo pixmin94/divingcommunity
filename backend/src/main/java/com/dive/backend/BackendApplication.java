@@ -1,6 +1,7 @@
 package com.dive.backend;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,8 +19,8 @@ public class BackendApplication implements CommandLineRunner {
 	// @Autowired
 	// private TripRepository repo;
 
-	@Autowired
-	private AccountRepository repo;
+	// @Autowired
+	// private AccountRepository repo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
@@ -27,6 +28,7 @@ public class BackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		// --Testing create trip--
 		// Trip trip = new Trip();
 		// trip.setTitle("New Trip!");
 		// trip.setLocation("bali");
@@ -35,10 +37,14 @@ public class BackendApplication implements CommandLineRunner {
 		// System.out.println(trip);
 		// int result = repo.insertTrip(trip);
 
-		Account account = new Account("hello", "Hello World", "hello@gmail.com", "", "Singapore");
-		boolean result = repo.createAccount(account);
+		// --Testing create account--
+		// Account account = new Account("hello", "Hello World", "hello@gmail.com", "", "Singapore");
+		// boolean result = repo.createAccount(account);
 
-		System.out.println(">>>>>>>>>>RESULT: "+result);
+		// --Testing get all trips--
+		// List<Trip> result = repo.getTrips();
+
+		// System.out.println(">>>>>>>>>>RESULT: "+result);
 	}
 
 }

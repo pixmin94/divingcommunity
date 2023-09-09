@@ -44,4 +44,16 @@ public class TripController {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(res);
     }
+
+    @PostMapping(path="/updatetrip")
+    private ResponseEntity<Integer> updateTrip(@RequestBody String trip) {
+        System.out.println(trip);
+        Trip t = Utils.toTripObject(trip);
+        System.out.println("Trip object: " + t);
+        int res = service.updateTrip(t);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(res);
+    }
 }

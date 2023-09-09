@@ -46,4 +46,13 @@ public class TripRepository {
     public List<Trip> getTrips() {
         return jdbcTemplate.query(SQL_GET_ALL_TRIPS, new BeanPropertyRowMapper<>(Trip.class));
     }
+
+    public boolean updateTrip(Trip trip) {
+        return jdbcTemplate.update(SQL_EDIT_TRIP,
+                trip.getTitle(),
+                trip.getLocation(),
+                trip.getStartDate(),
+                trip.getEndDate(),
+                trip.getTripId()) > 0;
+    }
 }
