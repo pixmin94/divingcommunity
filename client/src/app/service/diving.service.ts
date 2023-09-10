@@ -1,11 +1,12 @@
-import { Account, Trip } from './../model/models';
+import { Account, Trip, User } from './../model/models';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, firstValueFrom } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class DivingService {
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient, private cookieSvc: CookieService) {  }
 
   createTrip(trip: Trip): Promise<any> {
     return firstValueFrom(
@@ -17,9 +18,26 @@ export class DivingService {
     return this.http.get<any>('/api/gettrips')
   }
 
-  createAccount(account: Account): Promise<any> {
-    return firstValueFrom(
-      this.http.post<Account>('/api/createaccount', account)
-    )
+  createAccount(account: Account): Observable<any> {
+    return this.http.post('/api/createaccount', account, {responseType: 'text'})
+
   }
+
+  login(user: User): Observable<any> {
+    return this.http.post('/api/login', user, {responseType: 'text'})
+  }
+
+  private isLoggedInSubj = new BehaviorSubject<boolean>(false)
+  isLoggedIn$ = this.isLoggedInSubj.asObservable()
+  setLoggedIn(isLoggedIn: boolean) {
+    this.isLoggedInSubj.next(isLoggedIn)
+  }
+
+  // updateLoggedInStatus() {
+  //   const token = this.cookieSvc.get('username')
+  //   this.isLoggedIn = !!token
+  //   console.log(token)
+  //   return !!token
+  // }
+
 }
