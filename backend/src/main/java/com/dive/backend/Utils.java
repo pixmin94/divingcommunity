@@ -10,6 +10,7 @@ import java.sql.Date;
 
 import com.dive.backend.model.Account;
 import com.dive.backend.model.Trip;
+import com.dive.backend.model.User;
 
 public class Utils {
     public static JsonObject toJSON(String json) {
@@ -32,11 +33,20 @@ public class Utils {
         Account a = new Account();
         // username, full_name, email, nationality, image
         a.setUsername(o.getString("username"));
-        a.setFullName(o.getString("full_name"));
+        a.setPassword(o.getString("password"));
+        a.setFullName(o.getString("fullName"));
         a.setEmail(o.getString("email"));
         a.setNationality(o.getString("nationality"));
-        a.setImage(o.getString("image"));
+        // a.setImage(o.getString("image"));
         return a;
+    }
+
+    public static User toUserObject(String user) {
+        JsonObject o = toJSON(user);
+        User u = new User();
+        u.setUsername(o.getString("username"));
+        u.setPassword(o.getString("password"));
+        return u;
     }
 
     // public static Trip toTripObject(Document doc){
