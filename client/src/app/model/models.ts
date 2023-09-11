@@ -4,7 +4,8 @@ export interface Trip {
   country: string,
   location: string,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
+  attendees: string[]
 }
 
 export interface Account {

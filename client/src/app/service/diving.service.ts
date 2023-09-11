@@ -1,5 +1,5 @@
 import { Account, Trip, User } from './../model/models';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
@@ -39,5 +39,24 @@ export class DivingService {
   //   console.log(token)
   //   return !!token
   // }
+
+  public findUsername(username: string): Promise<any> {
+    const params = new HttpParams()
+      .set("username", username)
+    return firstValueFrom(
+      this.http.get<Account>('/api/finduser', { params })
+    )
+  }
+
+  public joinTrip(tripId: string, username: string) : Promise<any> {
+    const params = new HttpParams()
+      .set("tripId", tripId)
+      .set("username", username)
+    return firstValueFrom(
+      this.http.get<any>('/api/jointrip', { params })
+    )
+  }
+
+  // getAttendees()
 
 }
