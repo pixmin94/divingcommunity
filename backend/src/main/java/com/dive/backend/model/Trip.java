@@ -1,6 +1,7 @@
 package com.dive.backend.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,4 +16,5 @@ public class Trip {
     private String location;
     private Date startDate;
     private Date endDate;
+    private List<String> attendees;
 }

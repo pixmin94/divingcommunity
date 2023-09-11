@@ -36,4 +36,13 @@ public class AccountService {
         //     return "unable to login";
         // }
     }
+
+    public Account getUserDetails(String username) {
+        return repo.findUserDetails(username);
+    }
+
+    public boolean updateAccount(Account account) {
+        return repo.updateAccount(account);
+    }
+
 }

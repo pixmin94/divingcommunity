@@ -29,4 +29,8 @@ public class TripService {
             return 0;
         }
     }
+
+    public String joinTrip(String tripId, String username) {
+        return repo.joinTrip(tripId, username);
+    }
 }

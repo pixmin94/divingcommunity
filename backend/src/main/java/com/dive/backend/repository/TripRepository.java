@@ -8,6 +8,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.dive.backend.model.Account;
 import com.dive.backend.model.Trip;
 
 import static com.dive.backend.repository.Queries.*;
@@ -44,7 +45,14 @@ public class TripRepository {
     }
 
     public List<Trip> getTrips() {
-        return jdbcTemplate.query(SQL_GET_ALL_TRIPS, new BeanPropertyRowMapper<>(Trip.class));
+        List<Trip> trips = jdbcTemplate.query(SQL_GET_ALL_TRIPS, new BeanPropertyRowMapper<>(Trip.class));
+
+        for (Trip trip : trips) {
+            List<String> attendees = jdbcTemplate.queryForList(SQL_GET_TRIP_ATTENDEES, String.class, trip.getTripId());
+            trip.setAttendees(attendees);
+        }
+
+        return trips;
     }
 
     public boolean updateTrip(Trip trip) {
@@ -54,5 +62,14 @@ public class TripRepository {
                 trip.getStartDate(),
                 trip.getEndDate(),
                 trip.getTripId()) > 0;
+    }
+
+    public String joinTrip(String tripId, String username) {
+        try {
+            jdbcTemplate.update(SQL_ADD_ATTENDEES, tripId, username);
+            return jdbcTemplate.queryForObject(SQL_GET_TRIP_TITLE, BeanPropertyRowMapper.newInstance(String.class), tripId);
+        } catch (Exception e){  
+            return "Failed to join trip";
+        }
     }
 }

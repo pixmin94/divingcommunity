@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dive.backend.Utils;
@@ -26,9 +27,8 @@ public class TripController {
 
     @PostMapping(path="/createtrip")
     private ResponseEntity<Integer> createTrip(@RequestBody String trip) {
-        System.out.println(trip);
         Trip t = Utils.toTripObject(trip);
-        System.out.println("Trip object: " + t);
+        // System.out.println("Trip object: " + t);
         int res = service.createTrip(t);
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -47,13 +47,23 @@ public class TripController {
 
     @PostMapping(path="/updatetrip")
     private ResponseEntity<Integer> updateTrip(@RequestBody String trip) {
-        System.out.println(trip);
         Trip t = Utils.toTripObject(trip);
-        System.out.println("Trip object: " + t);
+        // System.out.println("Trip object: " + t);
         int res = service.updateTrip(t);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(res);
     }
+
+    @GetMapping(path="/jointrip")
+    private ResponseEntity<String> joinTrip(@RequestParam("tripId") String tripId,
+        @RequestParam("username") String username) {
+            System.out.println(tripId+username);
+            String res = service.joinTrip(tripId, username);
+            return ResponseEntity
+                .status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(res);
+        }
 }
