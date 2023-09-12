@@ -21,7 +21,8 @@ export class DisplayTripsComponent implements OnInit{
   joinTrip(tripId: number) {
     this.service.joinTrip(tripId.toString(), this.cookieSvc.get('username'))
       .then(res => {
-        alert("Joined trip: "+res)
+        alert(res)
+        window.location.reload();
       })
   }
 

@@ -7,9 +7,10 @@
           <label for="title">Title</label>
         </div>
         <div class="form-input">
-          <mat-form-field appearance="fill">
+          <input type="text" formControlName="title">
+          <!-- <mat-form-field appearance="fill">
             <input matInput formControlName="title" type="text" id="title">
-          </mat-form-field>
+          </mat-form-field> -->
         </div>
       </div>
       <div class="form-row">
@@ -17,9 +18,10 @@
           <label for="location">Location</label>
         </div>
         <div class="form-input">
-          <mat-form-field appearance="fill">
+          <input type="text" formControlName="location">
+          <!-- <mat-form-field appearance="fill">
             <input matInput formControlName="location" type="text" id="location">
-          </mat-form-field>
+          </mat-form-field> -->
         </div>
       </div>
       <div class="form-row">
@@ -27,11 +29,12 @@
           <label for="startDate">Start Date</label>
         </div>
         <div class="form-input">
-          <mat-form-field appearance="fill">
+          <input type="date" formControlName="startDate">
+          <!-- <mat-form-field appearance="fill">
             <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" id="startDate">
             <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #startDatePicker></mat-datepicker>
-          </mat-form-field>
+          </mat-form-field> -->
         </div>
       </div>
       <div class="form-row">
@@ -39,11 +42,12 @@
           <label for="endDate">End Date</label>
         </div>
         <div class="form-input">
-          <mat-form-field appearance="fill">
+          <input type="date" formControlName="endDate">
+          <!-- <mat-form-field appearance="fill">
             <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" id="endDate">
             <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #endDatePicker></mat-datepicker>
-          </mat-form-field>
+          </mat-form-field> -->
         </div>
       </div>
       <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Create Trip</button>

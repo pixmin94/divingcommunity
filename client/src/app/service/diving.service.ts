@@ -73,10 +73,8 @@ export class DivingService {
       .set("tripId", tripId)
       .set("username", username)
     return firstValueFrom(
-      this.http.get<any>('/api/jointrip', { params })
+      this.http.get('/api/jointrip', { params, responseType: 'text' })
     )
   }
-
-  // getAttendees()
 
 }

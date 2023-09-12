@@ -7,11 +7,11 @@
     </mat-card-header>
     <!-- <img matCardImage src="Card wide image source"> -->
     <mat-card-content>
-        Text content....
+        Location: {{t.location}}<br>
+        Dates: {{t.startDate}} - {{t.endDate}}
     </mat-card-content>
     <mat-card-actions align="end">
         <button mat-flat-button color="primary" (click)="joinTrip(t.tripId)">Join Trip</button>
-
     </mat-card-actions>
     <mat-card-footer style="margin: 0 20px;">
         Attendees:
