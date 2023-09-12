@@ -16,6 +16,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { UpdateAccountComponent } from './component/account/update-account.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './store/user.reducer';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { MaterialModule } from './material.module';
     ReactiveFormsModule,
     HttpClientModule,
     NoopAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    StoreModule.forRoot({user: userReducer})
   ],
   providers: [
     DivingService,

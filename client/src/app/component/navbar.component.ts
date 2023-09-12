@@ -1,7 +1,9 @@
 import { DivingService } from './../service/diving.service';
-import { Subscription } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectIsLoggedIn } from '../store/user.selectors';
+
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +11,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit{
-  isLoggedIn: boolean = false
+  // isLoggedIn: boolean = false
+  isLoggedIn$!: Observable<boolean>
 
-  constructor(private service: DivingService) { }
+  constructor(
+    private service: DivingService,
+    private store: Store
+  ) {
+    this.service.initUserState()
+  }
 
   ngOnInit(): void {
-    this.service.isLoggedIn$.subscribe((logged) =>
-      this.isLoggedIn = logged)
+
+    this.isLoggedIn$ = this.store.select(selectIsLoggedIn)
+
+    // this.service.isLoggedIn$.subscribe((logged) =>
+    //   this.isLoggedIn = logged)
+
     // this.isLoggedIn = this.service.updateLoggedInStatus();
 
     // this.cookieSvc.get('username').subscribe(() => {
@@ -23,6 +35,9 @@ export class NavbarComponent implements OnInit{
     // })
   }
 
-
+  logout() {
+    this.service.logout()
+    alert("Logged out!")
+  }
 
 }

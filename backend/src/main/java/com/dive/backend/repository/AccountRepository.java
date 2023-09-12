@@ -40,7 +40,7 @@ public class AccountRepository {
     }
 
     public boolean login(User user) {
-        Map<String, Object> userMap = jdbcTemplate.queryForMap(SQL_GET_USER_PASSWORD, "fred");
+        Map<String, Object> userMap = jdbcTemplate.queryForMap(SQL_GET_USER_PASSWORD, user.getUsername());
         System.out.println(userMap);
 
         if (userMap.get("password") == null) {

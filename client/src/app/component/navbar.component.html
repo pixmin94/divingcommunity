@@ -2,10 +2,11 @@
   <a [routerLink]="['/']">Sea Squad</a>
   <span class="spacer"></span>
   <div>
-    <button mat-button *ngIf="!isLoggedIn" [routerLink]="['/login']">Login</button>
-    <button mat-button *ngIf="!isLoggedIn" [routerLink]="['/register']">Register</button>
-    <button mat-button *ngIf="isLoggedIn" [routerLink]="['/trip']">Add Trip</button>
-    <button mat-button *ngIf="isLoggedIn" [routerLink]="['/account']">Edit Account</button>
+    <button mat-button *ngIf="!(isLoggedIn$ | async )" [routerLink]="['/login']">Login</button>
+    <button mat-button *ngIf="!(isLoggedIn$ | async )" [routerLink]="['/register']">Register</button>
+    <button mat-button *ngIf="(isLoggedIn$ | async )" [routerLink]="['/trip']">Add Trip</button>
+    <button mat-button *ngIf="(isLoggedIn$ | async )" [routerLink]="['/account']">Edit Account</button>
+    <button mat-button *ngIf="(isLoggedIn$ | async )" (click)="logout()">Logout</button>
   </div>
 </mat-toolbar>
 

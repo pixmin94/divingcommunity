@@ -1,6 +1,7 @@
 import { DivingService } from './../../service/diving.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/models';
 
 @Component({
@@ -11,8 +12,11 @@ import { User } from 'src/app/model/models';
 export class LoginComponent implements OnInit{
   form!: FormGroup
 
-  constructor( private fb: FormBuilder,
-      private service: DivingService) { }
+  constructor(
+    private fb: FormBuilder,
+    private service: DivingService,
+    private router: Router
+  ) { }
 
   login() {
     const user: User = this.form.value
@@ -26,7 +30,8 @@ export class LoginComponent implements OnInit{
       res => {
         alert("Logged into "+res)
         this.form.reset()
-        this.service.setLoggedIn(true)
+        this.router.navigate(['/'])
+        // this.service.setLoggedIn(true)
       }
     )
   }
