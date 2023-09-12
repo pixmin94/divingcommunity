@@ -13,6 +13,9 @@ import { NavbarComponent } from './component/navbar.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './component/account/login.component';
 import { CookieService } from 'ngx-cookie-service';
+import { UpdateAccountComponent } from './component/account/update-account.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -21,13 +24,16 @@ import { CookieService } from 'ngx-cookie-service';
     DisplayTripsComponent,
     CreateAccountComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    UpdateAccountComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule,
+    MaterialModule
   ],
   providers: [
     DivingService,

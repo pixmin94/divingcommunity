@@ -1,8 +1,19 @@
-<div class="navbar">
+<mat-toolbar color="primary" class="navbar">
+  <a [routerLink]="['/']">Sea Squad</a>
+  <span class="spacer"></span>
+  <div>
+    <button mat-button *ngIf="!isLoggedIn" [routerLink]="['/login']">Login</button>
+    <button mat-button *ngIf="!isLoggedIn" [routerLink]="['/register']">Register</button>
+    <button mat-button *ngIf="isLoggedIn" [routerLink]="['/trip']">Add Trip</button>
+    <button mat-button *ngIf="isLoggedIn" [routerLink]="['/account']">Edit Account</button>
+  </div>
+</mat-toolbar>
+
+<!-- <div class="navbar">
   <a class="active" [routerLink]="['/']">Home</a>&nbsp;
   <a *ngIf="!isLoggedIn" [routerLink]="['/login']">Login</a>&nbsp;
   <a *ngIf="!isLoggedIn" [routerLink]="['/register']">Register</a>&nbsp;
   <a *ngIf="isLoggedIn" [routerLink]="['/trip']">Add Trip</a>&nbsp;
-  <!-- <a *ngIf="isLoggedIn" [routerLink]="['/account']">Edit Account</a>&nbsp; -->
+  <a *ngIf="isLoggedIn" [routerLink]="['/account']">Edit Account</a>&nbsp;
 
-</div>
+</div> -->

@@ -1,4 +1,22 @@
-<h1>Welcome to Sea Squad!</h1>
+<div class="container">
+  <mat-card class="login-card">
+    <h2>Log In</h2>
+    <form [formGroup]="form" (submit)="login()">
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" type="text">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Login</button>
+    </form>
+  </mat-card>
+</div>
+
+
+<!-- <h1>Welcome to Sea Squad!</h1>
 
 <form [formGroup]="form" (submit)="login()">
   <table>
@@ -14,5 +32,5 @@
       <td><button type="submit" [disabled]="form.invalid">Login</button></td>
     </tr>
   </table>
-</form>
+</form> -->
 

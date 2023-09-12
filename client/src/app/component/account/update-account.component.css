@@ -5,7 +5,7 @@
   height: 100vh;
 }
 
-.registration-card {
+.edit-account-card {
   width: 400px;
   padding: 20px;
 }
@@ -13,7 +13,7 @@
 .form-row {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 .form-label {

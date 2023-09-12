@@ -52,4 +52,18 @@ public class AccountRepository {
         return res;
     }
 
+    public Account findUserDetails(String username) {
+        Account account = new Account();
+        account = jdbcTemplate.queryForObject(SQL_GET_USER_DETAILS, BeanPropertyRowMapper.newInstance(Account.class), username);
+        return account;
+    }
+
+    public boolean updateAccount(Account account) {
+        return jdbcTemplate.update(SQL_EDIT_ACCOUNT, 
+            account.getPassword(),
+            account.getFullName(),
+            account.getEmail(),
+            account.getNationality()) > 0;
+    }
+
 }

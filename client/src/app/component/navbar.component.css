@@ -1,0 +1,12 @@
+.navbar {
+  justify-content: space-between;
+}
+
+button {
+  padding-right: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}

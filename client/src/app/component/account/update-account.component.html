@@ -1,15 +1,13 @@
 <div class="container">
-  <mat-card class="registration-card">
-    <h1>Create Account</h1>
+  <mat-card class="edit-account-card">
+    <h2>Edit Account</h2>
     <form [formGroup]="form" (submit)="submitAccount()">
       <div class="form-row">
         <div class="form-label">
           <label for="username">Username</label>
         </div>
         <div class="form-input">
-          <mat-form-field appearance="fill">
-            <input matInput formControlName="username" type="text" id="username">
-          </mat-form-field>
+          <span>{{username}}</span>
         </div>
       </div>
       <div class="form-row">
@@ -52,19 +50,19 @@
           </mat-form-field>
         </div>
       </div>
-      <button mat-raised-button align="end" color="primary" type="submit" [disabled]="form.invalid">Register</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Update</button>
     </form>
   </mat-card>
 </div>
 
 
-<!-- <h1>Create Account</h1>
+<!-- <h1>Edit Account</h1>
 
 <form [formGroup]="form" (submit)="submitAccount()">
   <table>
     <tr>
       <td>Username: </td>
-      <td><input type="text" formControlName="username"></td>
+      <td>{{username}}</td>
     </tr>
     <tr>
       <td>Password: </td>
@@ -83,7 +81,7 @@
       <td><input type="text" formControlName="nationality"></td>
     </tr>
     <tr>
-      <td><button type="submit" [disabled]="form.invalid">Register</button></td>
+      <td><button type="submit" [disabled]="form.invalid">Update</button></td>
     </tr>
   </table>
 </form> -->

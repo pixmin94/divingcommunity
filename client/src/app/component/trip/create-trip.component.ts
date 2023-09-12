@@ -31,8 +31,8 @@ export class CreateTripComponent implements OnInit{
     return this.fb.group({
       title: this.fb.control<string>(''),
       location: this.fb.control<string>(''),
-      startDate: this.fb.control<Date>(new Date(0), [Validators.required]),
-      endDate: this.fb.control<Date>(new Date(0), [Validators.required])
+      startDate: this.fb.control<Date | null>(null, [Validators.required]),
+      endDate: this.fb.control<Date | null>(null, [Validators.required])
     })
   }
 }
