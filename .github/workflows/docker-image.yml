@@ -9,7 +9,6 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -18,9 +17,9 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
     - name: Use Node 19
-    uses: actions/setup-node@v1
-    with:
-      node-version: 19.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 19.x
 
     - name: Install Railway
       run: npm i -g @railway/cli
