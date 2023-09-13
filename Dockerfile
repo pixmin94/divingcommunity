@@ -1,43 +1,28 @@
-FROM node:18 AS angbuilder
+FROM node:18-alpine AS builder1
 
 WORKDIR /app
 
-COPY client/src src
-COPY client/angular.json .
-COPY client/package-lock.json . 
-COPY client/package.json . 
-COPY client/tsconfig.app.json . 
-COPY client/tsconfig.json .
-COPY client/tsconfig.spec.json . 
+COPY /client .
 
-RUN npm i -g @angular/cli 
-RUN npm ci 
-RUN ng build 
+RUN npm ci
+RUN npm i -g @angular/cli
+RUN ng build
 
-FROM maven:3-eclipse-temurin-17 AS javabuilder
+FROM eclipse-temurin:17 AS builder2
 
 WORKDIR /app
 
-COPY backend/src src
-COPY backend/mvnw . 
-COPY backend/mvnw.cmd .
-COPY backend/pom.xml .
-COPY --from=angbuilder /app/dist/client/ /app/src/main/resources/static/
+COPY /backend .
+COPY --from=builder1 /app/dist/* /app/src/main/resources/static
 
-RUN mvn clean package -Dmaven.test.skip=true
+RUN ./mvnw install -DskipTests
 
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17
 
-WORKDIR /app
+COPY --from=builder2 /app/target/*.jar seasquad/app.jar
 
-COPY --from=javabuilder /app/target/backend-0.0.1-SNAPSHOT.jar app.jar
-
-ENV SPRING_DATASOURCE_URL=123
-ENV SPRING_DATASOURCE_USERNAME=fred
-ENV SPRING_DATASOURCE_PASSWORD=123
-
-ENV PORT=3000
+ENV PORT=80
 
 EXPOSE ${PORT}
 
-ENTRYPOINT SERVER_PORT=${PORT} java -jar app.jar
+ENTRYPOINT SERVER_PORT=${PORT} java -jar /seasquad/app.jar -Dserver.port=${PORT}
