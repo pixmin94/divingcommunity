@@ -21,6 +21,10 @@ public class TripService {
         return repo.getTrips();
     }
 
+    public List<Trip> getMyTrips(String username) {
+        return repo.getMyTrips(username);
+    }
+
     public Integer updateTrip(Trip trip) {
         try {
             repo.updateTrip(trip);
@@ -32,5 +36,9 @@ public class TripService {
 
     public String joinTrip(String tripId, String username) {
         return repo.joinTrip(tripId, username);
+    }
+
+    public String leaveTrip(String tripId, String username){
+        return repo.leaveTrip(tripId, username);
     }
 }
