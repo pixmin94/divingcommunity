@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>My Trips</h1>
+
+  <mat-card *ngFor="let t of trips" class="trip-card">
+      <mat-card-header>
+          <mat-card-title >{{t.title}}</mat-card-title>
+      </mat-card-header>
+      <!-- <img matCardImage src="Card wide image source"> -->
+      <mat-card-content>
+          Location: {{t.location}}<br>
+          Dates: {{t.startDate}} - {{t.endDate}}
+      </mat-card-content>
+      <mat-card-actions align="end">
+          <button mat-flat-button color="primary" (click)="leaveTrip(t.tripId)">Leave Trip</button>
+      </mat-card-actions>
+      <!-- <mat-card-footer style="margin: 0 20px;">
+          Attendees:
+        <mat-chip-set>
+          <mat-chip *ngFor="let a of t.attendees">{{a}}</mat-chip>
+        </mat-chip-set>
+      </mat-card-footer> -->
+  </mat-card>
+  </div>

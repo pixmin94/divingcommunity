@@ -25,19 +25,34 @@ export class DivingService {
     return this.http.get<any>('/api/gettrips')
   }
 
+  getMyTrips(): Observable<any> {
+    const username = this.cookieSvc.get('username')
+    const params = new HttpParams()
+      .set("username", username)
+    return this.http.get('/api/getmytrips', { params })
+  }
+
   createAccount(account: Account): Observable<any> {
     return this.http.post('/api/createaccount', account, {responseType: 'text'})
 
   }
 
+  updateAccount(account: Account): Promise<any> {
+    account.username = this.cookieSvc.get('username')
+    return firstValueFrom(
+      this.http.post<Account>('/api/updateaccount', account)
+    )
+  }
+
   login(user: User): Observable<any> {
-    this.store.dispatch(UserActions.login());
+    this.store.dispatch(UserActions.login())
+    console.log("logging in service: "+user.username)
     return this.http.post('/api/login', user, {responseType: 'text'})
   }
 
   logout(){
     this.store.dispatch(UserActions.logout())
-    this.cookieSvc.delete('username');
+    this.cookieSvc.delete('username')
   }
 
   initUserState() {
@@ -74,6 +89,15 @@ export class DivingService {
       .set("username", username)
     return firstValueFrom(
       this.http.get('/api/jointrip', { params, responseType: 'text' })
+    )
+  }
+
+  public leaveTrip(tripId: string, username: string): Promise<any> {
+    const params = new HttpParams()
+      .set("tripId", tripId)
+      .set("username", username)
+    return firstValueFrom(
+      this.http.get('/api/leavetrip', { params, responseType: 'text' })
     )
   }
 

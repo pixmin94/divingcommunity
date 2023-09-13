@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateTripComponent } from './component/trip/create-trip.component';
@@ -9,7 +8,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DisplayTripsComponent } from './component/trip/display-trips.component';
 import { CreateAccountComponent } from './component/account/create-account.component';
-import { NavbarComponent } from './component/navbar.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './component/account/login.component';
 import { CookieService } from 'ngx-cookie-service';
@@ -18,6 +16,11 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from './store/user.reducer';
+import { ViewMyTripsComponent } from './component/trip/view-my-trips.component';
+import { NavbarComponent } from './component/misc/navbar.component';
+import { FooterComponent } from './component/misc/footer.component';
+import { ContactUsComponent } from './component/misc/contact-us.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { userReducer } from './store/user.reducer';
     CreateAccountComponent,
     NavbarComponent,
     LoginComponent,
-    UpdateAccountComponent
+    UpdateAccountComponent,
+    ViewMyTripsComponent,
+    FooterComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

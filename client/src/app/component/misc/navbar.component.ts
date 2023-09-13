@@ -1,8 +1,10 @@
-import { DivingService } from './../service/diving.service';
+
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectIsLoggedIn } from '../store/user.selectors';
+import { DivingService } from 'src/app/service/diving.service';
+import { selectIsLoggedIn } from 'src/app/store/user.selectors';
+
 
 
 @Component({

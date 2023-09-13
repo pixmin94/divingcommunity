@@ -4,6 +4,7 @@
   <div>
     <button mat-button *ngIf="!(isLoggedIn$ | async )" [routerLink]="['/login']">Login</button>
     <button mat-button *ngIf="!(isLoggedIn$ | async )" [routerLink]="['/register']">Register</button>
+    <button mat-button *ngIf="(isLoggedIn$ | async )" [routerLink]="['/mytrip']">My Trips</button>
     <button mat-button *ngIf="(isLoggedIn$ | async )" [routerLink]="['/trip']">Add Trip</button>
     <button mat-button *ngIf="(isLoggedIn$ | async )" [routerLink]="['/account']">Edit Account</button>
     <button mat-button *ngIf="(isLoggedIn$ | async )" (click)="logout()">Logout</button>
