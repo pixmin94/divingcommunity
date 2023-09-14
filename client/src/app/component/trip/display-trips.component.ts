@@ -19,6 +19,7 @@ export class DisplayTripsComponent implements OnInit{
   ) { }
 
   joinTrip(tripId: number) {
+    // this.trips[tripId].attendees.push(this.cookieSvc.get('username'))
     this.service.joinTrip(tripId.toString(), this.cookieSvc.get('username'))
       .then(res => {
         alert(res)

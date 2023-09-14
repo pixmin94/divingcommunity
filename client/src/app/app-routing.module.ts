@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: '', component: DisplayTripsComponent, title: 'All Trips'},
   {path: 'login', component: LoginComponent, title: 'Login'},
   {path: 'trip', component: CreateTripComponent, title: 'Create New Trip'},
-  {path: 'mytrip', component: ViewMyTripsComponent, title: 'View My Trips'},
+  {path: 'mytrip/:username', component: ViewMyTripsComponent, title: 'View My Trips'},
   {path: 'register', component: CreateAccountComponent, title: 'Register New Account'},
   {path: 'account', component:UpdateAccountComponent, title: 'Update Account Details'},
   {path: 'contact', component:ContactUsComponent, title: 'Contact Us'},

@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DivingService } from 'src/app/service/diving.service';
 import { selectIsLoggedIn } from 'src/app/store/user.selectors';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 
 
@@ -18,7 +20,9 @@ export class NavbarComponent implements OnInit{
 
   constructor(
     private service: DivingService,
-    private store: Store
+    private store: Store,
+    private cookieSvc: CookieService,
+    private router: Router
   ) {
     this.service.initUserState()
   }
@@ -40,6 +44,11 @@ export class NavbarComponent implements OnInit{
   logout() {
     this.service.logout()
     alert("Logged out!")
+  }
+
+  getMyTrips() {
+    const username = this.cookieSvc.get('username')
+    this.router.navigate(['mytrip', username])
   }
 
 }

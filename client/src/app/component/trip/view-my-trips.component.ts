@@ -22,7 +22,7 @@ export class ViewMyTripsComponent {
     this.service.leaveTrip(tripId.toString(), this.cookieSvc.get('username'))
       .then(res => {
         alert(res)
-        //
+        window.location.reload();
       })
   }
 

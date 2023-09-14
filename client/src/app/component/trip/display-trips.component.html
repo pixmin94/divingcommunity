@@ -15,7 +15,7 @@
       <mat-card-actions align="end">
           <button mat-flat-button color="primary" (click)="joinTrip(t.tripId)">Join Trip</button>
       </mat-card-actions>
-      <mat-card-footer style="margin: 0 20px;">
+      <mat-card-footer>
           Attendees:
         <mat-chip-set>
           <mat-chip *ngFor="let a of t.attendees">{{a}}</mat-chip>

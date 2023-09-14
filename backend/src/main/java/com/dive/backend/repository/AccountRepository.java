@@ -59,11 +59,21 @@ public class AccountRepository {
     }
 
     public boolean updateAccount(Account account) {
-        return jdbcTemplate.update(SQL_EDIT_ACCOUNT, 
-            account.getPassword(),
-            account.getFullName(),
-            account.getEmail(),
-            account.getNationality()) > 0;
+        if (account.getPassword() == null) {
+            return jdbcTemplate.update(SQL_EDIT_ACCOUNT_WITHOUT_PASSWORD,
+                account.getFullName(),
+                account.getEmail(),
+                account.getNationality(),
+                account.getUsername()) > 0;
+        } else {
+            String hashedPassword = BCrypt.hashpw(account.getPassword(), BCrypt.gensalt());
+            return jdbcTemplate.update(SQL_EDIT_ACCOUNT,
+                hashedPassword,
+                account.getFullName(),
+                account.getEmail(),
+                account.getNationality(),
+                account.getUsername()) > 0;
+        }
     }
 
 }

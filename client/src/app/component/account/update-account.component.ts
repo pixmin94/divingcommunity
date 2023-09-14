@@ -22,29 +22,32 @@ export class UpdateAccountComponent implements OnInit{
   ngOnInit(): void {
     this.username = this.cookieSvc.get('username')
     // console.log(this.username)
-
-    if(!this.username)
-      this.form = this.createForm()
+    this.form = this.createForm()
 
     this.service.findUsername(this.username)
-      .then(account => {
-        this.form = this.createForm(account)
+      .then((account) => {
+        this.form.patchValue(account)
       })
   }
 
   submitAccount() {
     const account: Account = this.form.value
+    account.username = this.username
+    console.log(account)
     this.service.updateAccount(account)
-      .then(result => alert("Updated account: "+account.username))
+      .then(result => {
+        alert("Updated account: "+account.username)
+        console.log(result)
+      })
       .catch(error => alert("Error: "+error))
   }
 
   createForm(data: Account | null = null) {
     return this.fb.group({
-      password: this.fb.control<string>(data? '' : ''),
-      fullName: this.fb.control<string>(data? data.fullName: ''),
-      email: this.fb.control<string>(data? data.email: '', [Validators.email]),
-      nationality: this.fb.control<string>(data? data.nationality: '')
+      password: this.fb.control<string>(''),
+      fullName: this.fb.control<string>(''),
+      email: this.fb.control<string>('', [Validators.email]),
+      nationality: this.fb.control<string>('')
     })
   }
 }

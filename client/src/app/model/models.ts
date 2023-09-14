@@ -11,6 +11,7 @@ export interface Trip {
 
 export interface Account {
   username: string,
+  password: string,
   fullName: string,
   email: string,
   nationality: string
