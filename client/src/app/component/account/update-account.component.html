@@ -15,9 +15,7 @@
           <label for="password">Password</label>
         </div>
         <div class="form-input">
-          <mat-form-field appearance="fill">
-            <input matInput formControlName="password" type="password" id="password">
-          </mat-form-field>
+          <input type="password" formControlName="password">
         </div>
       </div>
       <div class="form-row">
@@ -25,9 +23,7 @@
           <label for="fullName">Full Name</label>
         </div>
         <div class="form-input">
-          <mat-form-field appearance="fill">
-            <input matInput formControlName="fullName" type="text" id="fullName">
-          </mat-form-field>
+          <input type="text" formControlName="fullName">
         </div>
       </div>
       <div class="form-row">
@@ -35,9 +31,7 @@
           <label for="email">Email</label>
         </div>
         <div class="form-input">
-          <mat-form-field appearance="fill">
-            <input matInput formControlName="email" type="email" id="email">
-          </mat-form-field>
+          <input type="email" formControlName="email">
         </div>
       </div>
       <div class="form-row">
@@ -45,9 +39,7 @@
           <label for="nationality">Nationality</label>
         </div>
         <div class="form-input">
-          <mat-form-field appearance="fill">
-            <input matInput formControlName="nationality" type="text" id="nationality">
-          </mat-form-field>
+          <input type="text" formControlName="nationality">
         </div>
       </div>
       <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Update</button>
