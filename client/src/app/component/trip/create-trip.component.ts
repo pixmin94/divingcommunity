@@ -1,5 +1,5 @@
 import { DivingService } from '../../service/diving.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Trip } from '../../model/models';
 
@@ -11,6 +11,10 @@ import { Trip } from '../../model/models';
 export class CreateTripComponent implements OnInit{
   form!: FormGroup
   tripID!: number
+  @ViewChild('image')
+  image!: ElementRef
+
+  imageFile= ""
 
   constructor(private fb: FormBuilder,
       private service: DivingService) { }
@@ -20,9 +24,10 @@ export class CreateTripComponent implements OnInit{
   }
 
   submitTrip() {
+    const file = this.image.nativeElement.files[0] as File
     const trip: Trip = this.form.value
-    console.log(trip)
-    this.service.createTrip(trip)
+    
+    this.service.createTrip(trip, file)
       .then(result => alert("Trip ID created: "+result))
       .catch(error => alert("Error: "+error))
   }

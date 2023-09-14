@@ -2,7 +2,7 @@ package com.dive.backend.repository;
 
 public class Queries {
     // Trip Queries
-    public static final String SQL_INSERT_TRIP = "insert into trips (title, location, start_date, end_date) values (?,?,?,?)";
+    public static final String SQL_INSERT_TRIP = "insert into trips (title, location, start_date, end_date, image) values (?,?,?,?,?)";
     public static final String SQL_GET_ALL_TRIPS = "select * from trips order by trip_id desc";
     public static final String SQL_GET_MY_TRIPS_ATTENDEES = "select trip_id from attendees where username = ?";
     public static final String SQL_GET_MY_TRIPS = "select * from trips where trip_id = ?";

@@ -15,10 +15,18 @@ export class DivingService {
     private store: Store
     ) {  }
 
-  createTrip(trip: Trip): Promise<any> {
+  createTrip(trip: Trip, image: File): Promise<any> {
+    const formData: FormData = new FormData()
+
+    formData.append('title', trip.title)
+    formData.append('location', trip.location)
+    formData.append('startDate', trip.startDate.toString())
+    formData.append('endDate', trip.endDate.toString())
+    formData.append('image', image)
+
     return firstValueFrom(
-      this.http.post<Trip>('/api/createtrip', trip)
-    )//.then(result => console.log(result))
+      this.http.post('/api/createtrip', formData)
+    )
   }
 
   getTrips(): Observable<Trip[]> {

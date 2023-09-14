@@ -8,8 +8,20 @@
 .trip-card {
   width: 600px;
   margin: 20px;
+  padding: 10px;
 }
 
 h1 {
   padding-top: 20px;
+}
+
+.image {
+  height: 300px;
+  width: auto;
+  justify-content: center;
+}
+
+mat-card-title {
+  font-size: large;
+  font-weight: 600;
 }

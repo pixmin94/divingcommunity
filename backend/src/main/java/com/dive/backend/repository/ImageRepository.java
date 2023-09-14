@@ -44,9 +44,4 @@ public class ImageRepository {
            return uuid;
     }
 
-    public String getURL (String uuid) {
-        return s3.getUrl("ceemj", uuid).toExternalForm();
-        
-    }
-
 }

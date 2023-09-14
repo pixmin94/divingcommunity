@@ -5,6 +5,7 @@ export interface Trip {
   location: string,
   startDate: Date,
   endDate: Date,
+  image: string,
   attendees: string[]
 }
 
@@ -12,8 +13,7 @@ export interface Account {
   username: string,
   fullName: string,
   email: string,
-  nationality: string,
-  image: string
+  nationality: string
 }
 
 export interface User {

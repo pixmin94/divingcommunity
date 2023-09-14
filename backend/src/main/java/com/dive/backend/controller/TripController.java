@@ -1,5 +1,7 @@
 package com.dive.backend.controller;
 
+import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dive.backend.Utils;
 import com.dive.backend.model.Trip;
+import com.dive.backend.repository.ImageRepository;
 import com.dive.backend.service.TripService;
 
 @RestController
@@ -27,12 +30,28 @@ public class TripController {
     @Autowired
     private TripService service;
 
+    @Autowired
+    private ImageRepository repo;
+
     @PostMapping(path="/createtrip")
     private ResponseEntity<Integer> createTrip(
-        @RequestPart("trip") Trip trip,
-        @RequestPart("image") MultipartFile file) {
+        @RequestPart("title") String title,
+        @RequestPart("location") String location,
+        @RequestPart("startDate") String startDate,
+        @RequestPart("endDate") String endDate,
+        @RequestPart("image") MultipartFile file) throws IOException {
         // Trip t = Utils.toTripObject(trip);
         // System.out.println("Trip object: " + t);
+        Trip trip = new Trip();
+        trip.setTitle(title);
+        trip.setLocation(location);
+        trip.setStartDate(Date.valueOf(startDate));
+        trip.setEndDate(Date.valueOf(endDate));
+
+        String uuid = repo.uploadFile(file);
+        String imageUrl = "https://ceemj.sgp1.digitaloceanspaces.com/"+uuid;
+        trip.setImage(imageUrl);
+
         int res = service.createTrip(trip);
         return ResponseEntity
                 .status(HttpStatus.OK)

@@ -36,6 +36,7 @@ public class TripRepository {
                     ps.setString(2, trip.getLocation());
                     ps.setDate(3, trip.getStartDate());
                     ps.setDate(4, trip.getEndDate());
+                    ps.setString(5, trip.getImage());
                 return ps;
             }
         };

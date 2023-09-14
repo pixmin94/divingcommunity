@@ -50,6 +50,14 @@
           </mat-form-field> -->
         </div>
       </div>
+      <div class="form-row">
+        <div class="form-label">
+          <label for="image">Image</label>
+        </div>
+        <div class="form-input">
+          <input type="file" placeholder="Image" accept="image/*" #image>
+        </div>
+      </div>
       <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Create Trip</button>
     </form>
   </mat-card>
