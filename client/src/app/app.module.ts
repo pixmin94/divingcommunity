@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,7 @@ import { ViewMyTripsComponent } from './component/trip/view-my-trips.component';
 import { NavbarComponent } from './component/misc/navbar.component';
 import { FooterComponent } from './component/misc/footer.component';
 import { ContactUsComponent } from './component/misc/contact-us.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -42,7 +43,13 @@ import { ContactUsComponent } from './component/misc/contact-us.component';
     HttpClientModule,
     NoopAnimationsModule,
     MaterialModule,
-    StoreModule.forRoot({user: userReducer})
+    StoreModule.forRoot({user: userReducer}),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     DivingService,
