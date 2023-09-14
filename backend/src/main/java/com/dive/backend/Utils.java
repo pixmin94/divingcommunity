@@ -25,6 +25,7 @@ public class Utils {
         t.setLocation(o.getString("location"));
         t.setStartDate(Date.valueOf(o.getString("startDate")));
         t.setEndDate(Date.valueOf(o.getString("endDate")));
+        t.setImage(o.getString("image"));
         return t;
     }
 

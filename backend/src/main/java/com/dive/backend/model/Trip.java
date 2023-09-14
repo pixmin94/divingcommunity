@@ -16,5 +16,6 @@ public class Trip {
     private String location;
     private Date startDate;
     private Date endDate;
+    private String image;
     private List<String> attendees;
 }

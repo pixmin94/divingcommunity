@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dive.backend.Utils;
 import com.dive.backend.model.Trip;
@@ -26,10 +28,12 @@ public class TripController {
     private TripService service;
 
     @PostMapping(path="/createtrip")
-    private ResponseEntity<Integer> createTrip(@RequestBody String trip) {
-        Trip t = Utils.toTripObject(trip);
-        System.out.println("Trip object: " + t);
-        int res = service.createTrip(t);
+    private ResponseEntity<Integer> createTrip(
+        @RequestPart("trip") Trip trip,
+        @RequestPart("image") MultipartFile file) {
+        // Trip t = Utils.toTripObject(trip);
+        // System.out.println("Trip object: " + t);
+        int res = service.createTrip(trip);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
